@@ -1,19 +1,20 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-
+import authRouter from '../modules/login/router/index'
+import chatRouter from '../modules/chat/router/index'
+import checkToken from '../modules/login/router/authGuard'
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    ...authRouter,
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/chat',
+    ...chatRouter,
+    beforeEnter: [ checkToken ]
+  },
+  { 
+    path:'/:pathMatch(.*)*',     
+    component: () => import('../components/NotFound.vue') 
   }
 ]
 

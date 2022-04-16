@@ -1,0 +1,38 @@
+@import './variables.scss';
+
+@mixin flex($jc, $ai, $fd) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-direction: $fd;
+}
+
+@mixin small_device-up {
+    @media (min-width: $small_device) {
+        @content;
+    }
+}
+
+@mixin small_device-down {
+    @media (max-width: $small_device) {
+        @content;
+    }
+}
+
+@mixin medium_device-up {
+    @media (min-width: $medium_device) {
+        @content;
+    }
+}
+
+@mixin medium_device-down {
+    @media (max-width: $medium_device) {
+        @content;
+    }
+}
+
+@mixin large_device-up {
+    @media (min-width: $large_device) {
+        @content;
+    }
+}

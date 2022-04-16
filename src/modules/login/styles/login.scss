@@ -1,0 +1,65 @@
+@use "sass:map";
+
+@import '../../../assets/styles/variables.scss';
+@import '../../../assets/styles/mixins.scss';
+.login{
+    width: 100%;
+    height: 100%;
+    @include flex(center, center, column);
+
+    .login__form {
+        width: 400px;
+        height: 450px;
+        @include flex(center, center, column);
+        
+        .login__input {
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            outline: none;
+            padding: 2px;
+            border: 1.5px solid rgb(197, 197, 197);
+            transition: .2s;
+            &:hover {
+                border-color: rgb(145, 143, 143);
+            }
+        
+        }
+
+        .login__input, .login__label {
+            margin-bottom: 15px;
+        }
+
+        .login__label {
+            align-self: flex-start;
+            font-weight: 500;
+        }
+
+        .login__button {
+            width: 100%;
+            height: 40px;
+            font-size: 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: map.get($theme-colors, "3");
+            color: #fff;
+        }
+        
+        .login__link {
+            font-size: 14px;
+            margin-top: 10px;
+            align-self: flex-start;
+        }
+
+        @include small_device-down {
+            width: 90%;
+            height: 100%;
+        }
+    }
+    @include small_device-down {
+        margin-top: 10px;
+    }
+}
+

@@ -1,0 +1,399 @@
+@use "sass:map";
+
+@import '../../../assets/styles/mixins.scss';
+@import '../../../assets/styles/variables.scss';
+
+
+
+.no__chat {
+    width: 100%;
+    height: 100%;
+    @include flex(center, center, row);
+
+    .mobile__active__users {
+        display: none;
+    }
+
+    @include medium_device-down {
+        h1 {
+            display: none;
+        }
+
+        .mobile__active__users {
+            display: block;
+        }
+    }
+}
+
+.chat {
+    width: 100vw;
+    height: 100vh;
+    @include flex(space-evenly, center, column);
+    position: relative;
+    overflow: hidden;
+    transition: .2s;
+
+    @include medium_device-down {
+        @include flex(space-between, center, column);
+    }
+
+    .chat__main__content {
+        width: 100%;
+        height: 90%;
+        @include flex(space-evenly, center, row);
+
+        .chat__active {
+            width: 30%;
+            height: 95%;
+            border-radius: 10px;
+            transition: .2s;
+
+            @include medium_device-down {
+                position: absolute;
+                left: -1000px;
+            }
+        }
+
+        .chat__messages {
+            width: 65%;
+            height: 95%;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+            @include medium_device-down {
+                width: 100%;
+                height: 100%;
+                border-radius: none;
+                box-shadow: none;
+            }
+
+        }
+
+    }
+
+}
+
+.chat__header{
+    width: 90%;
+    height: 10%;
+
+    @include flex(space-between, center, row);
+    .header__logout{
+        cursor: pointer;
+        .logout{ 
+            width: 150px;
+            height:40px;
+            outline: none;
+            border:none;
+            border-radius:5px;
+            background:map.get($theme-colors, "1");
+            color: #fff;          
+            cursor: pointer;
+            @include medium_device-down {
+                width: 100px;
+            }
+
+            &:hover {
+                transition: .2s;
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            }
+        }
+    }
+
+    .chat__logo {
+        cursor: pointer;
+        img {
+            width: 40px;
+        }
+    }
+
+    .chat__mode {
+        img {
+            width: 30px;
+        }
+    }
+}
+
+.active {
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+
+    @include medium_device-down {
+        height: 100%;
+    }
+
+    .active__search {
+        width: 100%;
+        padding: 10px;
+        height: 50px;
+        outline: none;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        border: 1px solid #e3e3e3;
+
+        &:hover {
+            box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+            transition: .2s;
+        }
+
+        @include medium_device-down {
+            margin-top: 15px;
+        }
+    }
+
+    .active__user {
+        width: 100%;
+        height: 100px;
+        position: relative;
+        background: #fff;
+        @include flex(center, center, row);
+        cursor: pointer;
+
+        .active__user__content {
+            width: 100%;
+            height: 100%;
+            @include flex(space-between, center, row);
+
+            .active__user__name {
+                @include flex(flex-start, center, row);
+                width: 80%;
+                margin-left: 10px;
+
+                .active__name {
+                    margin-left: 20px;
+                }
+            }
+
+            .active__notification {
+                width: 20px;
+                margin-right: 10px;
+            }
+
+            .isActive {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.635);
+        border-radius: 10px;
+    }
+}
+
+.conversation {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    @include flex(space-between, center, column);
+
+    .conversation__info {
+        width: 100%;
+        height: 10%;
+        margin-top: 10px;
+        @include flex(flex-start, center, row);
+        position: relative;
+        img {
+            width: 20px;
+            position: absolute;
+            right: 0;
+            display: none;
+            margin-right: 15px;
+        }
+
+        @include medium_device-down {
+            img {
+                width: 30px;
+                position: absolute;
+                right: 0;
+                display: flex;
+                margin-right: 15px;
+            }
+        }
+
+        .conversation__name__shorten, .conversation__name {
+            margin-left: 20px;
+
+            @include medium_device-down {
+                font-size: 20px;
+            }
+        }
+
+        .conversation__name__shorten {
+            display: none;
+        }
+
+
+        @include medium_device-down {
+            .conversation__name__shorten {
+                display: inline-block;
+            }
+
+            .conversation__name {
+                display: none;
+            }
+        }
+
+        .converstation__icon {
+            margin-left: 20px;
+        }
+
+        border-bottom: 1px solid #c4c4c4;
+
+    }
+
+    .converstation__messages {
+        width: 100%;
+        height: 80%;
+        overflow-y: scroll;
+        transition: .5;
+        scroll-behavior: smooth;
+
+        .message__container {
+            width: 100%;
+            margin-top: 20px;
+            @include flex(flex-start, flex-end, column);
+
+            .message {
+                width: 40%;
+                margin-top: 20px;
+                padding: 10px;
+                border-radius: 10px;
+                @include medium_device-down {
+                    width: 60%;
+                }
+            }
+
+            .bubble {
+                width: 10%;
+                transition: .2s;
+
+                @include medium_device-down {
+                    width: 25%;
+                }
+
+                height: 50px;
+                @include flex(space-evenly, center, row);
+
+                .dot {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: map.get($theme-colors, "3");
+                    animation: wave 1s linear infinite;
+                    animation-delay: -0.9s;
+                }
+
+                .dot:nth-child(2) {
+                    animation-delay: -0.7s;
+                }
+
+                .dot:nth-child(3) {
+                    animation-delay: -0.6s;
+                }
+            }
+        }
+
+        .self__message {
+            color: #fff;
+            margin-right: 15px;
+        }
+
+        .user__message {
+            margin-left: 15px;
+        }
+
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.635);
+            border-radius: 10px;
+        }
+    }
+
+    .converstation__input {
+        width: 100%;
+        height: 10%;
+        @include flex(space-evenly, center, row-reverse);
+
+        .input__message {
+            width: 75%;
+            padding: 10px;
+            height: 40px;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #e6eaf3;
+            background-color: map.get($theme-colors, "5");
+        }
+
+        .send__message {
+            width: 48px;
+            border-radius: 50%;
+            outline: none;
+            height: 48px;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            background: map.get($theme-colors, "3");
+            @include flex(center, center, row);
+
+            img {
+                width: 20px;
+            }
+        }
+    }
+}
+
+.icon__name {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    position: relative;
+    @include flex(center, center, row);
+
+    .icon__active {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+
+@keyframes wave {
+
+    0%,
+    60%,
+    100% {
+        transform: initial;
+    }
+
+    30% {
+        transform: translateY(-15px);
+    }
+}

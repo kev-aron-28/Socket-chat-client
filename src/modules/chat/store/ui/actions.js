@@ -1,0 +1,3 @@
+const setDarkMode = (context, mode) => {
+
+}
